@@ -1,17 +1,4 @@
-<p align="center">
-  <a href="https://laravel.com" target="_blank">
-    <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo">
-  </a>
-</p>
 
-<p align="center">
-  <a href="https://github.com/your-username/social-connect-api/actions"><img src="https://github.com/your-username/social-connect-api/workflows/tests/badge.svg" alt="Build Status"></a>
-  <a href="https://packagist.org/packages/your-username/social-connect-api"><img src="https://img.shields.io/packagist/dt/your-username/social-connect-api" alt="Total Downloads"></a>
-  <a href="https://packagist.org/packages/your-username/social-connect-api"><img src="https://img.shields.io/packagist/v/your-username/social-connect-api" alt="Latest Stable Version"></a>
-  <a href="https://packagist.org/packages/your-username/social-connect-api"><img src="https://img.shields.io/packagist/l/your-username/social-connect-api" alt="License"></a>
-</p>
-
----
 
 # 🧠 SocialConnect API
 
