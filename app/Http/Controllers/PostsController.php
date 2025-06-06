@@ -17,9 +17,6 @@ class PostsController extends Controller
         ]);
     }
 
-
-    
-
     public function store(Request $request)
     {
         // dd($request->all()); 
@@ -49,5 +46,50 @@ class PostsController extends Controller
             'message' => 'Berhasil membuat Post baru',
             'data'=> $post
         ],201);
+    }
+
+    public function show($id)
+    {
+        $post = Post::find($id);
+        return response()->json([
+            'success' => true,
+            'data' => $post
+        ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $validator =  Validator::make($request->all(),[
+            'content' => 'required|string|max:255',
+            'image_url' => 'nullable'
+        ]);
+
+        if ($validator->fails()){
+            return response()->json([
+                'success' => false,
+                'message' => $validator->errors()
+            ], 400);
+        }
+
+        //tampung data baru
+        $post = Post::find($id);
+        $post->content = $request->content;
+        $post->image_url = $request->image_url;
+
+        $post->save();
+        return response()->json([
+            'success' =>true,
+            'message' =>'Berhasil Update Data',
+            'data' =>$post
+        ]);
+    }
+
+    public function destroy(int $id)
+    {
+        Post::destroy($id);
+        return response()->json([
+            'success' =>true,
+            'message' =>'Post Berhasil di hapus',
+        ]);
     }
 }
