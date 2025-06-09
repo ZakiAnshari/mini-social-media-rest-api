@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Post;
+use Illuminate\Http\Request;
+use Tymon\JWTAuth\Facades\JWTAuth;
 use Illuminate\Support\Facades\Validator;
 
 class PostsController extends Controller
 {
     public function index()
     {
-        $posts = Post::get();
+        $posts = Post::with(['user','comments','likes'])->get();
+
         return response()->json([
             'success' => true,
             'data' => $posts
@@ -20,8 +22,10 @@ class PostsController extends Controller
     public function store(Request $request)
     {
         // dd($request->all()); 
+
+        $user = JWTAuth::parseToken()->authenticate();
+
         $validator = Validator::make($request->all(),[
-            'user_id' => 'required',
             'content' => 'required|string|max:255',
             'image_url' => 'nullable'
         ]);
@@ -36,7 +40,7 @@ class PostsController extends Controller
 
         //jika falidasi berhasil lanjutkan
         $post = Post::create([
-            'user_id' => $request->user_id,
+            'user_id' => $user->id,
             'content' => $request->content,
             'image_url' => $request->image_url,
         ]);
